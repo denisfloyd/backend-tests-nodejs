@@ -1,7 +1,8 @@
-const { ReasonPhrases, StatusCodes } = require('http-status-codes');
-const { get } = require('./user.middleware');
 import * as service from '@/database/service';
 import { buildError, buildNext, buildReq } from 'test/builders';
+
+const { ReasonPhrases, StatusCodes } = require('http-status-codes');
+const { get } = require('./user.middleware');
 
 jest.mock('@/database/service');
 
@@ -44,26 +45,26 @@ describe('Middleware > User', () => {
   it('should return an user object given a valid email is provided', async () => {
     const req = buildReq();
     const next = buildNext();
-    const email = req.headers.email;
+    const { email } = req.headers;
     const resolved = {
       id: 1,
       email,
     };
 
-    jest.spyOn(service, 'findOrSave').mockResolvedValueOnce([resolved]);
+    jest.spyOn(service, 'findOrSave').mockResolvedValueOnce([ resolved ]);
 
     await get(req, null, next);
 
     expect(req.user).toBeDefined();
     expect(req.user).toEqual(resolved);
     expect(next).toHaveBeenCalledTimes(1);
-    expect(next).toHaveBeenCalledWith(/*nothing*/);
+    expect(next).toHaveBeenCalledWith(/* nothing */);
   });
 
   it('should forward an error when service.findOrSave fails', async () => {
     const req = buildReq();
     const next = buildNext();
-    const email = req.headers.email;
+    const { email } = req.headers;
 
     delete req.user;
 

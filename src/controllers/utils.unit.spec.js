@@ -11,7 +11,7 @@ describe('Controllers > utils', () => {
     const errors = {
       array: jest
         .fn()
-        .mockReturnValueOnce(['error1', 'error2'])
+        .mockReturnValueOnce([ 'error1', 'error2' ])
         .mockName('errors.array()'),
     };
 
@@ -19,13 +19,13 @@ describe('Controllers > utils', () => {
 
     expect(logger.error).toHaveBeenCalledTimes(1);
     expect(logger.error).toHaveBeenCalledWith('Validation failure', {
-      errors: ['error1', 'error2'],
+      errors: [ 'error1', 'error2' ],
     });
     expect(res.status).toHaveBeenCalledTimes(1);
     expect(res.status).toHaveBeenCalledWith(StatusCodes.UNPROCESSABLE_ENTITY);
     expect(res.json).toHaveBeenCalledTimes(1);
     expect(res.json).toHaveBeenCalledWith({
-      errors: ['error1', 'error2'],
+      errors: [ 'error1', 'error2' ],
     });
     expect(errors.array).toHaveBeenCalledTimes(1);
   });

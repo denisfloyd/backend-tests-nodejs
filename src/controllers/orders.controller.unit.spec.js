@@ -7,8 +7,8 @@ import {
   buildReq,
   buildRes,
 } from 'test/builders';
-import { create, index, validate } from './orders.controller';
 import * as validator from 'express-validator';
+import { create, index, validate } from './orders.controller';
 import { validationResponse } from './utils';
 
 jest.mock('express-validator');
@@ -78,7 +78,7 @@ describe('Controllers > Orders', () => {
     expect(validator.body).toHaveBeenCalledTimes(1);
     expect(validator.body).toHaveBeenCalledWith(
       'products',
-      `Please provide a list of products`,
+      'Please provide a list of products',
     );
   });
 

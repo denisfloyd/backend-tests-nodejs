@@ -1,8 +1,8 @@
 import { buildError, buildUser } from 'test/builders';
 import { User } from '@/database/models/user.model';
-import { listUsers, saveUser, findOrSave } from './users.service';
 import { StatusCodes } from 'http-status-codes';
 import { logger } from '@/utils/logger';
+import { listUsers, saveUser, findOrSave } from './users.service';
 
 jest.mock('@/database/models/user.model');
 jest.mock('@/utils/logger');
@@ -45,7 +45,7 @@ describe('Service > Users', () => {
   });
 
   it('should return a list of users', async () => {
-    const users = [buildUser(), buildUser()];
+    const users = [ buildUser(), buildUser() ];
 
     jest.spyOn(User, 'findAll').mockResolvedValueOnce(users);
 
@@ -59,7 +59,7 @@ describe('Service > Users', () => {
   it('should reject with an error when User.findAll() fails', () => {
     const error = buildError(
       StatusCodes.INTERNAL_SERVER_ERROR,
-      `Failed to retrieve users`,
+      'Failed to retrieve users',
     );
 
     jest.spyOn(User, 'findAll').mockRejectedValue(error);

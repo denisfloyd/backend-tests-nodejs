@@ -1,8 +1,10 @@
-import { buildError, buildOrder, buildOrders, buildUser } from 'test/builders';
+import {
+  buildError, buildOrder, buildOrders, buildUser
+} from 'test/builders';
 import { Order } from '@/database/models/order.model';
-import { listOrders, saveOrder } from './orders.service';
 import { StatusCodes } from 'http-status-codes';
 import { logger } from '@/utils/logger';
+import { listOrders, saveOrder } from './orders.service';
 
 jest.mock('@/database/models/order.model');
 jest.mock('@/utils/logger');
@@ -65,7 +67,7 @@ describe('Service > Orders', () => {
 
     expect(saveOrder(data)).resolves.toEqual(order);
     expect(logger.info).toHaveBeenCalledTimes(1);
-    expect(logger.info).toHaveBeenCalledWith(`New order saved`, { data });
+    expect(logger.info).toHaveBeenCalledWith('New order saved', { data });
   });
 
   it('should reject with an error when saveOrder is executed without any data', () => {

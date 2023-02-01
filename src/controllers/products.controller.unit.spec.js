@@ -1,7 +1,7 @@
 import { StatusCodes } from 'http-status-codes';
 import { buildReq, buildRes } from 'test/builders';
-import { index } from './products.controller';
 import products from 'test/stubs/products.json';
+import { index } from './products.controller';
 
 describe('Controllers > Orders', () => {
   afterEach(() => {
